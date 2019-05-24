@@ -44,3 +44,23 @@ cd cmd/device-gps-go/
 ./device-gps-go
 ```
 
+### Device Service Using Real BU-353-S4 Reciever
+
+If you have a BU-353-S4 USB GPS Reciever, you can try reading the GPS data directly from the device. This installation requires some preparation.
+
+1. Clone the repository in your go path.
+
+```
+$ cd ~/go/src/github.com/edgexfoundry/
+$ git clone https://github.com/edgexfoundry-holding/device-gps
+```
+
+2. Plug your USB GSP device into your machine and check under `/dev/` which USB port corresponds to your device. For the sake of this tutorial, we will assume the GPS device is plugged into `/dev/ttyUSB0`.
+
+3. The BU-353-S4 Device requires a 4800 baudrate. We need to assign that baud rate to the device.
+
+```
+$ stty 4800 > /dev/ttyUSB0
+```
+
+4. The device service is currently settup to read the mock data file. You need to go change the file name from 

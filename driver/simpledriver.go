@@ -41,38 +41,6 @@ type SimpleDriver struct {
 	gpsdata string
 }
 
-// func getImageBytes(imgFile string, buf *bytes.Buffer) error {
-// 	// Read existing image from file
-// 	img, err := os.Open(imgFile)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	defer img.Close()
-
-// 	// TODO: Attach MediaType property, determine if decoding
-// 	//  early is required (to optimize edge processing)
-
-// 	// Expect "png" or "jpeg" image type
-// 	imageData, imageType, err := image.Decode(img)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	// Finished with file. Reset file pointer
-// 	img.Seek(0, 0)
-// 	if imageType == "jpeg" {
-// 		err = jpeg.Encode(buf, imageData, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 	} else if imageType == "png" {
-// 		err = png.Encode(buf, imageData)
-// 		if err != nil {
-// 			return err
-// 		}
-// 	}
-// 	return nil
-// }
-
 // DisconnectDevice handles protocol-specific cleanup when a device
 // is removed.
 func (s *SimpleDriver) DisconnectDevice(deviceName string, protocols map[string]contract.ProtocolProperties) error {
@@ -87,7 +55,7 @@ func (s *SimpleDriver) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsMod
 
 	go func() {
 		// Open device (or file with sample output)
-		// s.device, err = os.Open("/dev/ttyUSB0")
+		// Chane line 91 if reading from real device
 		s.device, _ = os.Open("gps_output_test.txt")
 		defer s.device.Close()
 
