@@ -12,7 +12,7 @@ The data is encoded in JSON format. Each data point contains a JSON object with 
 - Latitude
 - Longitude
 - Speed (in knots/hr)
-- Unix timestamp as suppiled by the GPS device, and not the host machine (useful for keeping track of time without internet connection on resource constricted device)
+- Unix timestamp as supplied by the GPS device, and not the host machine (useful for keeping track of time without internet connection on resource constrained device)
 
 
 ## Getting Started
