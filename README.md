@@ -7,6 +7,13 @@ Once up and running, the device service will automatically push Geographical Coo
 
 This device profile requires a GPS reciever using the NMEA 0183 protocol. More specifically, I used a `BU-353-S4`, which speaks the NMEA 0183 protocol and has a USB plug. For more information on the NMEA 0183 protocol and how to decode it read this page: http://aprs.gids.nl/nmea/. The sentense this device reads is `$GPRMC`.
 
+The data is encoded in JSON format. Each data point contains a JSON object with the following information:
+
+- Latitude
+- Longitude
+- Speed (in knots/hr)
+- Unix timestamp as suppiled by the GPS device, and not the host machine (useful for keeping track of time without internet connection on resource constricted device)
+
 
 ## Getting Started
 
@@ -36,3 +43,4 @@ $ make build
 cd cmd/device-gps-go/
 ./device-gps-go
 ```
+
