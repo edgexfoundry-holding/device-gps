@@ -1,0 +1,8 @@
+*~
+*.log
+example/cmd/device-gps-go/device-gps-go
+glide.lock
+vendor
+.idea
+go.sum
+.DS_Store
