@@ -19,7 +19,7 @@ The data is encoded in JSON format. Each data point contains a JSON object with 
 
 This tutorial assumes you have an EdgeX instance running on your Linux/Mac machine. This device service has not been tested on Windows yet. You will also need Go 1.11 installed.
 
-### Device Service Using Mock GPS DATA
+### Device Service Using Mock GPS Data File
 
 This repository comes with a file containing sample GPS output in `cmd/device-gps-go/gps_output_test.txt`. By Default, this device profile will read from this file.
 
@@ -46,7 +46,7 @@ cd cmd/device-gps-go/
 
 4. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps-go01/100`
 
-### Device Service Using Real BU-353-S4 Reciever
+### Device Service Using a Real BU-353-S4 Reciever
 
 If you have a BU-353-S4 USB GPS Reciever, you can try reading the GPS data directly from the device. This installation requires some preparation.
 
