@@ -1,4 +1,4 @@
-# device-gps
+# device-gps-go
 
 ## Introduction
 
