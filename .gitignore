@@ -1,6 +1,6 @@
 *~
 *.log
-example/cmd/device-gps-go/device-gps-go
+example/cmd/device-gps/device-gps
 glide.lock
 vendor
 .idea
