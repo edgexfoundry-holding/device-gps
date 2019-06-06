@@ -9,8 +9,8 @@
 package main
 
 import (
-	"github.com/edgexfoundry/device-gps-go/driver"
-	"github.com/edgexfoundry/device-gps-go/pkg/startup"
+	"github.com/edgexfoundry/device-gps/driver"
+	"github.com/edgexfoundry/device-sdk-go/pkg/startup"
 )
 
 const (

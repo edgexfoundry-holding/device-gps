@@ -7,7 +7,7 @@ MICROSERVICES=cmd/device-gps-go/device-gps-go
 
 VERSION=$(shell cat ./VERSION)
 
-GOFLAGS=-ldflags "-X github.com/edgexfoundry/device-gps-go.Version=$(VERSION)"
+GOFLAGS=-ldflags "-X github.com/edgexfoundry/device-gps.Version=$(VERSION)"
 
 GIT_SHA=$(shell git rev-parse HEAD)
 
