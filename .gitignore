@@ -6,3 +6,4 @@ vendor
 .idea
 go.sum
 .DS_Store
+cmd/device-gps-go/device-gps-go
