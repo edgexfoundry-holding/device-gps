@@ -1,4 +1,4 @@
-# device-gps
+# device-gps-go
 
 ## Introduction
 
@@ -21,7 +21,7 @@ This tutorial assumes you have an EdgeX instance running on your Linux/Mac machi
 
 ### Device Service Using Mock GPS Data File
 
-This repository comes with a file containing sample GPS output in `cmd/device-gps/gps_output_test.txt`. By Default, the GPS device profile will read data from this file.
+This repository comes with a file containing sample GPS output in `cmd/device-gps-go/gps_output_test.txt`. By Default, the GPS device profile will read data from this file.
 When a real GPS device is connected, some connection specific detail needs to be provided to switch to real sensor mode.
 
 1. Clone the repository in your go path. If using Go modules, install where you please.
@@ -34,18 +34,18 @@ $ git clone https://github.com/edgexfoundry-holding/device-gps
 2. Build the service
 
 ```
-$ cd device-gps
+$ cd device-gps-go
 $ make build
 ```
 
 3. Start the service
 
 ```
-cd cmd/device-gps/
-./device-gps
+cd cmd/device-gps-go/
+./device-gps-go
 ```
 
-4. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps01/100`
+4. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps-go01/100`
 
 ### Device Service Using a Real BU-353-S4 Reciever
 
@@ -85,8 +85,8 @@ $ mongo < clean_mongo.js
 7. Start the service.
 
 ```
-cd cmd/device-gps/
-./device-gps
+cd cmd/device-gps-go/
+./device-gps-go
 ```
 
-8. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps01/100`
+8. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps-go01/100`
