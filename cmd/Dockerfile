@@ -6,7 +6,7 @@
 FROM golang:1.11-alpine AS builder
 
 ENV GO111MODULE=on
-WORKDIR /go/src/github.com/edgexfoundry/device-gps-go
+WORKDIR /go/src/github.com/edgexfoundry/device-gps
 
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
   copyright='Copyright (c) 2018, 2019: Intel'
@@ -35,7 +35,7 @@ ENV APP_PORT=49990
 EXPOSE $APP_PORT
 
 WORKDIR /
-COPY --from=builder /go/src/github.com/edgexfoundry/device-gps-go/example/cmd/device-gps-go/device-gps-go /usr/local/bin/device-gps-go
-COPY --from=builder /go/src/github.com/edgexfoundry/device-gps-go/example/cmd/device-gps-go/res/docker/configuration.toml /res/docker/configuration.toml
+COPY --from=builder /go/src/github.com/edgexfoundry/device-gps/example/cmd/device-gps/device-gps /usr/local/bin/device-gps
+COPY --from=builder /go/src/github.com/edgexfoundry/device-gps/example/cmd/device-gps/res/docker/configuration.toml /res/docker/configuration.toml
 
-CMD [ "/usr/local/bin/device-gps-go","--registry","--profile=docker","--confdir=/res"]
+CMD [ "/usr/local/bin/device-gps","--registry","--profile=docker","--confdir=/res"]

@@ -53,8 +53,19 @@ FailWaitTime = 10
 
 [Logging]
 EnableRemote = false
-File = "./device-gps-go.log"
+File = "./device-gps.log"
 
-[Driver]
-  Protocol = "tcp"
-  Port = "1883"
+# Pre-define Devices
+[[DeviceList]]
+  Name = "device-gps01"
+  Profile = "device-gps"
+  Description = "GPS device"
+  Labels = [ "industrial" ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.other]
+      Address = "gps01"
+      Port = "300"
+  [[DeviceList.AutoEvents]]
+    Frequency = "1s"
+    OnChange = false
+    Resource = "GPS"

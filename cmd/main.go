@@ -9,13 +9,13 @@
 package main
 
 import (
-	"github.com/edgexfoundry/device-gps-go/driver"
-	"github.com/edgexfoundry/device-gps-go/pkg/startup"
+	"github.com/edgexfoundry/device-gps/driver"
+	"github.com/edgexfoundry/device-sdk-go/pkg/startup"
 )
 
 const (
 	version     string = "1.0.0"
-	serviceName string = "device-gps-go"
+	serviceName string = "device-gps"
 )
 
 func main() {

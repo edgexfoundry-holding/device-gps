@@ -2,7 +2,7 @@
 LogLevel = 'INFO'
 
 [Service]
-Host = "device-gps-go"
+Host = "device-gps"
 Port = 49990
 ConnectRetries = 20
 Labels = []
@@ -53,7 +53,7 @@ FailWaitTime = 10
 
 [Logging]
 EnableRemote = true
-File = "/edgex/logs/device-gps-go.log"
+File = "/edgex/logs/device-gps.log"
 
 # Pre-define Devices
 [[DeviceList]]
