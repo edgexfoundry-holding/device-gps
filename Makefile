@@ -30,6 +30,6 @@ docker: $(DOCKERS)
 docker_device_gps:
 	docker build \
 		--label "git_sha=$(GIT_SHA)" \
-		-t edgexfoundry/docker-device-gps-go:$(GIT_SHA) \
-		-t edgexfoundry/docker-device-gps-go:$(VERSION)-dev \
+		-t edgexfoundry/docker-device-gps:$(GIT_SHA) \
+		-t edgexfoundry/docker-device-gps:$(VERSION)-dev \
 		.
