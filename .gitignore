@@ -1,9 +1,9 @@
 *~
 *.log
-example/cmd/device-gps/device-gps
+cmd/device-gps
 glide.lock
 vendor
 .idea
 go.sum
 .DS_Store
-cmd/device-gps-go/device-gps-go
+
