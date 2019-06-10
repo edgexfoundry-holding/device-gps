@@ -55,7 +55,6 @@ func (s *SimpleDriver) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsMod
 
 	go func() {
 		// Open device (or file with sample output)
-		// Chane line 91 if reading from real device
 		s.device, _ = os.Open("gps_output_test.txt")
 		defer s.device.Close()
 
@@ -79,6 +78,19 @@ func (s *SimpleDriver) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsMod
 
 // Parse GPS string and extract: Longitude, latitude, speed and time.
 // The data is stored in a GPSData struct and returned
+// The *data* array contains the different data points read from the $GPRMC line
+// data[1] => UTC Time. 220516 = 10:05:16 PM
+// data[2] => Data status (A = OK, V = Warning)
+// data[3] => Latitude
+// data[4] => North or South
+// data[5] => Longitude
+// data[6] => East or West
+// data[7] => Speed over ground in knots
+// data[8] => Track made good in degrees True
+// data[9] => UT date. 090419 = April 9th 2019
+// data[10] => Magnetic variation degrees (Easterly var. subtracts from true course)
+// data[11] => E or W variation
+// data[12] => Checksum
 func parseGPSline(data []string) string {
 
 	timestamp, _ := time.Parse("020106150405", data[9]+data[1])
