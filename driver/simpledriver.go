@@ -53,6 +53,7 @@ func (s *SimpleDriver) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsMod
 	s.lc = lc
 	s.asyncCh = asyncCh
 
+	// Go routine reading the lines printed by the GPS device and saving the coordinates to s.gpsdata
 	go func() {
 		// Open device (or file with sample output)
 		s.device, _ = os.Open("gps_output_test.txt")
@@ -140,7 +141,6 @@ func convertDegreesToDecimal(degreesMinutes string, hemisphere string) float64 {
 
 // HandleReadCommands triggers a protocol Read operation for the specified device.
 func (s *SimpleDriver) HandleReadCommands(deviceName string, protocols map[string]contract.ProtocolProperties, reqs []dsModels.CommandRequest) (res []*dsModels.CommandValue, err error) {
-	s.lc.Debug(fmt.Sprintf("test"))
 	if len(reqs) != 1 {
 		err = fmt.Errorf("SimpleDriver.HandleReadCommands; too many command requests; only one supported")
 		return
@@ -162,24 +162,8 @@ func (s *SimpleDriver) HandleReadCommands(deviceName string, protocols map[strin
 // command.
 func (s *SimpleDriver) HandleWriteCommands(deviceName string, protocols map[string]contract.ProtocolProperties, reqs []dsModels.CommandRequest,
 	params []*dsModels.CommandValue) error {
-
-	if len(reqs) != 1 {
-		err := fmt.Errorf("SimpleDriver.HandleWriteCommands; too many command requests; only one supported")
-		return err
-	}
-	if len(params) != 1 {
-		err := fmt.Errorf("SimpleDriver.HandleWriteCommands; the number of parameter is not correct; only one supported")
-		return err
-	}
-
-	s.lc.Debug(fmt.Sprintf("SimpleDriver.HandleWriteCommands: protocols: %v, resource: %v, parameters: %v", protocols, reqs[0].DeviceResourceName, params))
-	var err error
-	if s.switchButton, err = params[0].BoolValue(); err != nil {
-		err := fmt.Errorf("SimpleDriver.HandleWriteCommands; the data type of parameter should be Boolean, parameter: %s", params[0].String())
-		return err
-	}
-
-	return nil
+	err := fmt.Errorf("SimpleDriver.HandleWriteCommands; this device does not support write commands.")
+	return err
 }
 
 // Stop the protocol-specific DS code to shutdown gracefully, or
