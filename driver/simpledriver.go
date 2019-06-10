@@ -94,11 +94,12 @@ func (s *SimpleDriver) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsMod
 // data[12] => Checksum
 func parseGPSline(data []string) string {
 
+	// TODO: Handle errors
 	timestamp, _ := time.Parse("020106150405", data[9]+data[1])
 
-	latitude := convertDegreesToDecimal(data[3], data[4])
+	latitude, _ := convertDegreesToDecimal(data[3], data[4])
 
-	longitude := convertDegreesToDecimal(data[5], data[6])
+	longitude, _ := convertDegreesToDecimal(data[5], data[6])
 
 	speed, _ := strconv.ParseFloat(data[7], 64)
 
@@ -120,23 +121,27 @@ func parseGPSline(data []string) string {
 	return string(resp)
 }
 
-func convertDegreesToDecimal(degreesMinutes string, hemisphere string) float64 {
+func convertDegreesToDecimal(degreesMinutes string, hemisphere string) (float64, error) {
 	// 4916.45,N -> 49 deg, 16.45 minute north
 
 	decimalIndex := strings.Index(degreesMinutes, ".")
 
-	degrees, _ := strconv.ParseFloat(degreesMinutes[:decimalIndex-2], 64)
-
-	minutes, _ := strconv.ParseFloat(degreesMinutes[decimalIndex-2:], 64)
-
-	if hemisphere == "N" || hemisphere == "E" {
-		return degrees + (minutes / 60)
+	degrees, errDegrees := strconv.ParseFloat(degreesMinutes[:decimalIndex-2], 64)
+	if errDegrees != nil {
+		return 0.0, errDegrees
 	}
+
+	minutes, errMinutes := strconv.ParseFloat(degreesMinutes[decimalIndex-2:], 64)
+	if errMinutes != nil {
+		return 0.0, errMinutes
+	}
+
+	multiplier := 1.0
 	if hemisphere == "S" || hemisphere == "W" {
-		return -(degrees + (minutes / 60))
+		multiplier = -1.0
 	}
 
-	return 0.0
+	return multiplier * (degrees + (minutes / 60)), nil
 }
 
 // HandleReadCommands triggers a protocol Read operation for the specified device.
