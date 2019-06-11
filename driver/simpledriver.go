@@ -31,7 +31,7 @@ type gpsData struct {
 	Speed     float64
 }
 
-type SimpleDriver struct {
+type GPSDevice struct {
 	lc           logger.LoggingClient
 	asyncCh      chan<- *dsModels.AsyncValues
 	switchButton bool
@@ -43,13 +43,13 @@ type SimpleDriver struct {
 
 // DisconnectDevice handles protocol-specific cleanup when a device
 // is removed.
-func (s *SimpleDriver) DisconnectDevice(deviceName string, protocols map[string]contract.ProtocolProperties) error {
+func (s *GPSDevice) DisconnectDevice(deviceName string, protocols map[string]contract.ProtocolProperties) error {
 	return nil
 }
 
 // Initialize performs protocol-specific initialization for the device
 // service.
-func (s *SimpleDriver) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsModels.AsyncValues) error {
+func (s *GPSDevice) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsModels.AsyncValues) error {
 	s.lc = lc
 	s.asyncCh = asyncCh
 
@@ -145,12 +145,12 @@ func convertDegreesToDecimal(degreesMinutes string, hemisphere string) (float64,
 }
 
 // HandleReadCommands triggers a protocol Read operation for the specified device.
-func (s *SimpleDriver) HandleReadCommands(deviceName string, protocols map[string]contract.ProtocolProperties, reqs []dsModels.CommandRequest) (res []*dsModels.CommandValue, err error) {
+func (s *GPSDevice) HandleReadCommands(deviceName string, protocols map[string]contract.ProtocolProperties, reqs []dsModels.CommandRequest) (res []*dsModels.CommandValue, err error) {
 	if len(reqs) != 1 {
-		err = fmt.Errorf("SimpleDriver.HandleReadCommands; too many command requests; only one supported")
+		err = fmt.Errorf("GPSDevice.HandleReadCommands; too many command requests; only one supported")
 		return
 	}
-	s.lc.Debug(fmt.Sprintf("SimpleDriver.HandleReadCommands: protocols: %v resource: %v attributes: %v", protocols, reqs[0].DeviceResourceName, reqs[0].Attributes))
+	s.lc.Debug(fmt.Sprintf("GPSDevice.HandleReadCommands: protocols: %v resource: %v attributes: %v", protocols, reqs[0].DeviceResourceName, reqs[0].Attributes))
 
 	res = make([]*dsModels.CommandValue, 1)
 	now := time.Now().UnixNano() / int64(time.Millisecond)
@@ -165,9 +165,9 @@ func (s *SimpleDriver) HandleReadCommands(deviceName string, protocols map[strin
 // a ResourceOperation for a specific device resource.
 // Since the commands are actuation commands, params provide parameters for the individual
 // command.
-func (s *SimpleDriver) HandleWriteCommands(deviceName string, protocols map[string]contract.ProtocolProperties, reqs []dsModels.CommandRequest,
+func (s *GPSDevice) HandleWriteCommands(deviceName string, protocols map[string]contract.ProtocolProperties, reqs []dsModels.CommandRequest,
 	params []*dsModels.CommandValue) error {
-	err := fmt.Errorf("SimpleDriver.HandleWriteCommands; this device does not support write commands.")
+	err := fmt.Errorf("GPSDevice.HandleWriteCommands; this device does not support write commands.")
 	return err
 }
 
@@ -175,7 +175,7 @@ func (s *SimpleDriver) HandleWriteCommands(deviceName string, protocols map[stri
 // if the force parameter is 'true', immediately. The driver is responsible
 // for closing any in-use channels, including the channel used to send async
 // readings (if supported).
-func (s *SimpleDriver) Stop(force bool) error {
-	s.lc.Debug(fmt.Sprintf("SimpleDriver.Stop called: force=%v", force))
+func (s *GPSDevice) Stop(force bool) error {
+	s.lc.Debug(fmt.Sprintf("GPSDevice.Stop called: force=%v", force))
 	return nil
 }

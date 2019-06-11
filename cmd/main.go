@@ -19,6 +19,6 @@ const (
 )
 
 func main() {
-	sd := driver.SimpleDriver{}
+	sd := driver.GPSDevice{}
 	startup.Bootstrap(serviceName, version, &sd)
 }

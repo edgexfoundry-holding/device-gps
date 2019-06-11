@@ -1,14 +1,12 @@
 name: "device-gps"
-manufacturer: "Simple Corp."
-model: "SP-01"
-labels:
- - "modbus"
-description: "Example of Simple Device"
+manufacturer: "BU-353-S4"
+model: "BU-353-S4"
+description: "GPS device"
 
 deviceResources:
     -
         name: "GPS"
-        description: "Switch On/Off."
+        description: "Returns location from a BU-353-S4 GPS receiver or from a mock data file."
         properties:
             value:
                 { type: "String", readWrite: "R" }

@@ -60,7 +60,7 @@ File = "./device-gps.log"
   Name = "device-gps01"
   Profile = "device-gps"
   Description = "GPS device"
-  Labels = [ "industrial" ]
+  Labels = [ "IoT" ]
   [DeviceList.Protocols]
     [DeviceList.Protocols.other]
       Address = "gps01"
