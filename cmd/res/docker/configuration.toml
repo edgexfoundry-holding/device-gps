@@ -6,7 +6,7 @@ Host = "device-gps"
 Port = 49990
 ConnectRetries = 20
 Labels = []
-OpenMsg = "device simple started"
+OpenMsg = "GPS device started"
 ReadMaxLimit = 256
 Timeout = 5000
 EnableAsyncReadings = true
@@ -57,15 +57,15 @@ File = "/edgex/logs/device-gps.log"
 
 # Pre-define Devices
 [[DeviceList]]
-  Name = "Simple-Device01"
-  Profile = "Simple-Device"
-  Description = "Example of Simple Device"
-  Labels = [ "industrial" ]
+  Name = "device-gps01"
+  Profile = "device-gps"
+  Description = "Example of GPS Device"
+  Labels = [ "IoT" ]
   [DeviceList.Protocols]
     [DeviceList.Protocols.other]
-      Address = "simple01"
+      Address = "GPS01"
       Port = "300"
   [[DeviceList.AutoEvents]]
     Frequency = "1s"
     OnChange = false
-    Resource = "Switch"
+    Resource = "GPS"
