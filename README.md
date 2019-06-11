@@ -1,4 +1,4 @@
-# device-gps-go
+# device-gps
 
 ## Introduction
 
@@ -34,15 +34,15 @@ $ git clone https://github.com/edgexfoundry-holding/device-gps
 2. Build the service
 
 ```
-$ cd device-gps-go
+$ cd device-gps
 $ make build
 ```
 
 3. Start the service
 
 ```
-cd cmd/device-gps-go/
-./device-gps-go
+cd cmd/
+.
 ```
 
 4. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps01/100`
