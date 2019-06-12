@@ -66,7 +66,7 @@ $ git clone https://github.com/edgexfoundry-holding/device-gps
 $ stty 4800 > /dev/ttyUSB0
 ```
 
-4. The default device service behavior is to read from the mock data file. This needs to be changed. Edit line 91 in `driver/simpledriver.go`, changing `gps_output_test.txt` to `/dev/ttyUSB0`.
+4. The default device service behavior is to read from the mock data file. This needs to be changed. Edit line 91 in `driver/gpsdevice.go`, changing `gps_output_test.txt` to `/dev/ttyUSB0`.
 
 5. Build the service. From the top level directory of the gps device service:
 
