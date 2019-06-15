@@ -2,6 +2,7 @@
 //
 // Copyright (C) 2018 Canonical Ltd
 // Copyright (C) 2018-2019 IOTech Ltd
+// Copyright (C) 2019 VMware, Inc
 //
 // SPDX-License-Identifier: Apache-2.0
 
