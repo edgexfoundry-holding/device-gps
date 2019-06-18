@@ -18,6 +18,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	dsModels "github.com/edgexfoundry/device-sdk-go/pkg/models"
@@ -37,6 +38,7 @@ type GPSDevice struct {
 	asyncCh      chan<- *dsModels.AsyncValues
 	switchButton bool
 
+	mux     sync.Mutex
 	device  *os.File
 	scanner *bufio.Scanner
 	gpsdata string
@@ -68,7 +70,10 @@ func (s *GPSDevice) Initialize(lc logger.LoggingClient, asyncCh chan<- *dsModels
 			splitLine := strings.Split(s.scanner.Text(), ",")
 			if len(splitLine) > 0 {
 				if splitLine[0] == "$GPRMC" {
-					s.gpsdata = parseGPSline(splitLine)
+					tempGPSData := parseGPSline(splitLine)
+					s.mux.Lock()
+					s.gpsdata = tempGPSData
+					s.mux.Unlock()
 					time.Sleep(1000 * time.Millisecond)
 				}
 			}
@@ -156,7 +161,9 @@ func (s *GPSDevice) HandleReadCommands(deviceName string, protocols map[string]c
 	res = make([]*dsModels.CommandValue, 1)
 	now := time.Now().UnixNano() / int64(time.Millisecond)
 	if reqs[0].DeviceResourceName == "GPS" {
+		s.mux.Lock()
 		cv := dsModels.NewStringValue(reqs[0].DeviceResourceName, now, s.gpsdata)
+		s.mux.Unlock()
 		res[0] = cv
 	}
 	return
