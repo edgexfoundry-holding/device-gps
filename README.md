@@ -60,13 +60,13 @@ $ git clone https://github.com/edgexfoundry-holding/device-gps
 
 2. Plug your USB GSP device into your machine and check under `/dev/` which USB port corresponds to your device. For the sake of this tutorial, we will assume the GPS device is plugged into `/dev/ttyUSB0`.
 
-3. The BU-353-S4 Device requires a 4800 baudrate. We need to assign that baud rate to the device.
+3. The BU-353-S4 Device requires a 4800 baud-rate. We need to assign that baud rate to the device.
 
 ```
 $ stty 4800 > /dev/ttyUSB0
 ```
 
-4. The default device service behavior is to read from the mock data file. This needs to be changed. Edit line 91 in `driver/gpsdevice.go`, changing `gps_output_test.txt` to `/dev/ttyUSB0`.
+4. The default device service behavior is to read from the mock data file. This needs to be changed. Edit line 62 in `driver/gpsdevice.go`, changing `gps_output_test.txt` to `/dev/ttyUSB0`.
 
 5. Build the service. From the top level directory of the gps device service:
 
