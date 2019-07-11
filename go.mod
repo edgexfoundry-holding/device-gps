@@ -1,7 +1,7 @@
 module github.com/edgexfoundry/device-gps
 
 require (
-	github.com/edgexfoundry/device-sdk-go v0.0.0-20190605133754-8fddad2d6cae
+	github.com/edgexfoundry/device-sdk-go v1.0.0
 	github.com/edgexfoundry/go-mod-core-contracts v0.1.0
 	github.com/edgexfoundry/go-mod-registry v0.1.0
 	github.com/google/uuid v1.1.0
