@@ -10,16 +10,16 @@
 package main
 
 import (
+	device_gps "github.com/edgexfoundry/device-gps"
 	"github.com/edgexfoundry/device-gps/driver"
 	"github.com/edgexfoundry/device-sdk-go/pkg/startup"
 )
 
 const (
-	version     string = "1.0.0"
 	serviceName string = "device-gps"
 )
 
 func main() {
 	sd := driver.GPSDevice{}
-	startup.Bootstrap(serviceName, version, &sd)
+	startup.Bootstrap(serviceName, device_gps.Version, &sd)
 }
