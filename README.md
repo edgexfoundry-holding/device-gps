@@ -42,7 +42,7 @@ $ make build
 
 ```
 cd cmd/
-.device-gps
+./device-gps
 ```
 
 4. Once the device is running, go to your browser and enter the following URL to check if the device is generating data: `http://localhost:48080/api/v1/event/device/device-gps01/100`
